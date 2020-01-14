@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Image, Text, ImageBackground, TextInput } from "react-native";
 import axios from "axios";
 import { createMultiStyleIconSet } from "@expo/vector-icons";
+import Cities from '../UScities.json'
 
 class Forecast extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class Forecast extends Component {
   componentDidMount = () => {
     this.getCurrentWeather();
     this.getForecast()
+    // console.log(this.state.search)
     // console.log(Cities[9999])
     // console.log('hit')
   };
@@ -97,22 +99,26 @@ class Forecast extends Component {
     this.setState({ sunset: time });
   };
 
-  handleChange = event => {
-    this.setState({ search: event.target.value })
+  handleChange = value => {
+    this.setState({ search: value })
   }
 
   render() {
     const current = this.state.weatherObj;
     const {forecast} = this.state
+    // console.log(this.state.search)
     // console.log(this.state.timeStamp);
-    // let filterByValue = Cities.filter(o => {
+    let filterByValue = Cities.filter(o => o.name.toLowerCase().includes(this.state.search.toLowerCase()))
+    // console.log(filterByValue.map(el => el.name))
+    //     {
     //     return Object.keys(o).some(k => {
     //       return o[k]
     //         .toString()
     //         .toLowerCase()
     //         .includes(this.state.search.toLowerCase())
     //     })
-    //   })
+    //   
+      
     //   const cities = filterByValue.map(city => (
     //     <View key={city.id}>
     //         <Text>{city.name}</Text>
@@ -130,8 +136,7 @@ class Forecast extends Component {
         }}
         >
            <TextInput
-          onChangeText={this.handleChange}
-          value={this.state.search}
+        onChangeText={(search) => { this.setState({search: search})} }
           style={{width: "100%", height: 30, backgroundColor: 'white', borderRadius: 10 }}
         /> 
         {/* <Text>
