@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View, Image, Text, ImageBackground, TextInput } from "react-native";
 import axios from "axios";
-import Cities from "../UScities.json"
 import { createMultiStyleIconSet } from "@expo/vector-icons";
 
 class Forecast extends Component {
