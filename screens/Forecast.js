@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Image, Text, ImageBackground, TextInput } from "react-native";
 import axios from "axios";
 import { createMultiStyleIconSet } from "@expo/vector-icons";
+import Cities from '../UScities.json'
 
 class Forecast extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class Forecast extends Component {
   componentDidMount = () => {
     this.getCurrentWeather();
     this.getForecast()
-    console.log(this.state.search)
+    // console.log(this.state.search)
     // console.log(Cities[9999])
     // console.log('hit')
   };
@@ -108,7 +109,7 @@ class Forecast extends Component {
     // console.log(this.state.search)
     // console.log(this.state.timeStamp);
     let filterByValue = Cities.filter(o => o.name.toLowerCase().includes(this.state.search.toLowerCase()))
-    console.log(filterByValue.map(el => el.name))
+    // console.log(filterByValue.map(el => el.name))
     //     {
     //     return Object.keys(o).some(k => {
     //       return o[k]
