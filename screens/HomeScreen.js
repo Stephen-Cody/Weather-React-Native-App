@@ -26,7 +26,6 @@ export default class HomeScreen extends React.Component {
 
   componentDidMount = async () => {
     await this.findCoordinates();
-    // console.log('hit')
   };
 
   
@@ -54,11 +53,9 @@ export default class HomeScreen extends React.Component {
         `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=1b8d42a0a11b13b1e993848c6cfbe5f6`
       )
       .then(res => {
-        // console.log(res)
         this.setState({
           currentWeather: res.data.weather[0].main
         });
-        // console.log(this.state.currentWeather);
       });
     await this.setBackground();
   };
@@ -105,21 +102,6 @@ export default class HomeScreen extends React.Component {
     const example =
       "http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=1b8d42a0a11b13b1e993848c6cfbe5f6";
     return (
-      // <View style={styles.container}>
-      //   <ScrollView
-      //     style={styles.container}
-      //     contentContainerStyle={styles.contentContainer}>
-      //     <View style={styles.welcomeContainer}>
-      //       <Image
-      //         source={
-      //           __DEV__
-      //             ? require('../assets/images/robot-dev.png')
-      //             : require('../assets/images/robot-prod.png')
-      //         }
-      //         style={styles.welcomeImage}
-      //       />
-      //     </View>
-      // <View style={styles.container}>
       <>
       {this.state.uri  ? (<ImageBackground
         source={{uri: this.state.uri}}
@@ -131,45 +113,6 @@ export default class HomeScreen extends React.Component {
         />
       </ImageBackground>) : null }
       </>
-      // </View>
-
-      //         <View style={styles.getStartedContainer}>
-      //           <DevelopmentModeNotice />
-
-      //           <Text style={styles.getStartedText}>Get started by opening</Text>
-
-      //           <View
-      //             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-      //             <MonoText>screens/HomeScreen.js</MonoText>
-      //           </View>
-
-      //           <Text style={styles.getStartedText}>
-      //             NEW Text
-      //           </Text>
-      //         </View>
-
-      //         <View style={styles.helpContainer}>
-      //           <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-      //             <Text style={styles.helpLinkText}>
-      //               Help, it didn’t automatically reload!
-      //             </Text>
-      //           </TouchableOpacity>
-      //         </View>
-      //       </ScrollView>
-
-      //       <View style={styles.tabBarInfoContainer}>
-      //         <Text style={styles.tabBarInfoText}>
-      //           hello
-      //         </Text>
-
-      //         <View
-      //           style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-      //           <MonoText style={styles.codeHighlightText}>
-      //             navigation/MainTabNavigator.js
-      //           </MonoText>
-      //         </View>
-      //       </View>
-      //     </View>
     );
   }
 }

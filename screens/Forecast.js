@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Image, Text, ImageBackground, TextInput } from "react-native";
 import axios from "axios";
 import { createMultiStyleIconSet } from "@expo/vector-icons";
+import Cities from '../UScities.json'
 
 class Forecast extends Component {
   constructor(props) {
@@ -14,15 +15,12 @@ class Forecast extends Component {
       sunrise: "",
       sunset: "",
       currentTime: "",
-      forecast: '',
-      search: ''
+      forecast: ''
     };
   }
   componentDidMount = () => {
     this.getCurrentWeather();
     this.getForecast()
-    // console.log(Cities[9999])
-    // console.log('hit')
   };
 
   getCurrentWeather = async () => {
@@ -36,7 +34,6 @@ class Forecast extends Component {
         this.setState({
           weatherObj: res.data
         });
-        // console.log(this.state.weatherObj);
       });
     await this.convertToFahren();
     await this.maxTemp();
@@ -56,7 +53,6 @@ class Forecast extends Component {
         this.setState({
           forecast: res.data
         });
-        // console.log(this.state.forecast);
       });
   };
 
@@ -79,7 +75,6 @@ class Forecast extends Component {
   maxTemp = () => {
     const celsius = this.state.weatherObj.main.temp_max - 273;
     let maxTemp = Math.floor(celsius * (9 / 5) + 32)
-    // console.log(Math.floor((this.state.weatherObj.main.temp_max - 273) * (9 / 5) + 32))
     this.setState({
       maxTemp
     });
@@ -97,27 +92,9 @@ class Forecast extends Component {
     this.setState({ sunset: time });
   };
 
-  handleChange = event => {
-    this.setState({ search: event.target.value })
-  }
-
   render() {
     const current = this.state.weatherObj;
     const {forecast} = this.state
-    // console.log(this.state.timeStamp);
-    // let filterByValue = Cities.filter(o => {
-    //     return Object.keys(o).some(k => {
-    //       return o[k]
-    //         .toString()
-    //         .toLowerCase()
-    //         .includes(this.state.search.toLowerCase())
-    //     })
-    //   })
-    //   const cities = filterByValue.map(city => (
-    //     <View key={city.id}>
-    //         <Text>{city.name}</Text>
-    //     </View>
-    //   ))
     return (
         
         <View
@@ -129,6 +106,7 @@ class Forecast extends Component {
             width: '100%'
         }}
         >
+<<<<<<< HEAD
            {/* <TextInput
           onChangeText={this.handleChange}
           value={this.state.search}
@@ -139,6 +117,9 @@ class Forecast extends Component {
         </Text> */}
         {/* <ImageBackground source={{uri: 'https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'}} style={{width: '100%', height: '100%', position: 'absolute' }}></ImageBackground> */}
         <Text
+=======
+         <Text
+>>>>>>> master
           style={{
             marginTop: 10,
             textAlign: "center",
