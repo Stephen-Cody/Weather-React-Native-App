@@ -64,8 +64,35 @@ export default class HomeScreen extends React.Component {
   };
 
   setBackground = () => {
+    console.log(this.state.currentWeather)
     if (this.state.currentWeather === "Clouds") {
-      this.setState({ uri: "https://i.pinimg.com/originals/6b/8f/94/6b8f94ec84c93fdad4dd6070f16deabb.jpg" });
+      this.setState({ 
+        uri: "http://getwallpapers.com/wallpaper/full/4/f/4/564402.jpg" 
+      });
+    } else if (this.state.currentWeather === "Rain") {
+      this.setState({
+        uri: "https://i.etsystatic.com/9514918/r/il/71ac24/1096646654/il_570xN.1096646654_fcpu.jpg"
+      });
+    } else if (this.state.currentWeather === "Thunderstorm") {
+      this.setState({
+        uri: "https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      });
+    } else if (this.state.currentWeather === "Drizzle") {
+      this.setState({
+        uri: "https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      });
+    } else if (this.state.currentWeather === "Snow") {
+      this.setState({
+        uri: "https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      });
+    } else if (this.state.currentWeather === "Clouds") {
+      this.setState({
+        uri: "https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      });
+    } else if (this.state.currentWeather === "Clear") {
+      this.setState({
+        uri: "https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      });
     } else {
       this.setState({
         uri: "https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"

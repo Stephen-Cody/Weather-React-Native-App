@@ -129,11 +129,11 @@ class Forecast extends Component {
             width: '100%'
         }}
         >
-           <TextInput
+           {/* <TextInput
           onChangeText={this.handleChange}
           value={this.state.search}
           style={{width: "100%", height: 30, backgroundColor: 'white', borderRadius: 10 }}
-        /> 
+        />  */}
         {/* <Text>
             {cities}
         </Text> */}
