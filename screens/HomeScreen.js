@@ -24,21 +24,40 @@ export default class HomeScreen extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    this.getCurrentWeather();
+  componentDidMount = async () => {
+    await this.findCoordinates();
     // console.log('hit')
   };
 
+  
+  findCoordinates = async () => {
+    await navigator.geolocation.getCurrentPosition(
+      async position => {
+
+        await this.setState({ location: position });
+        await this.setState({
+          lat: this.state.location.coords.latitude,
+          lon: this.state.location.coords.longitude,
+        })
+        await this.getCurrentWeather();
+      },
+      error => Alert.alert(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  };
+
   getCurrentWeather = async () => {
+    let lat = this.state.lat
+    let lon = this.state.lon
     await axios
       .get(
-        "http://api.openweathermap.org/data/2.5/weather?q=Sandy,us&APPID=1b8d42a0a11b13b1e993848c6cfbe5f6"
+        `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=1b8d42a0a11b13b1e993848c6cfbe5f6`
       )
       .then(res => {
         this.setState({
           currentWeather: res.data.weather[0].main
         });
-        console.log(this.state.currentWeather);
+        // console.log(this.state.currentWeather);
       });
     await this.setBackground();
   };
@@ -78,7 +97,10 @@ export default class HomeScreen extends React.Component {
         source={{uri: this.state.uri}}
         style={{ width: "100%", height: "100%" }}
       >
-        <Forecast />
+        <Forecast 
+          lat = {this.state.lat}
+          lon = {this.state.lon}
+        />
       </ImageBackground>) : null }
       </>
       // </View>

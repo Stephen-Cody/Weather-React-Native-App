@@ -23,15 +23,17 @@ class Forecast extends Component {
   };
 
   getCurrentWeather = async () => {
+    let lat = this.props.lat
+    let lon = this.props.lon
     await axios
       .get(
-        "http://api.openweathermap.org/data/2.5/weather?q=Sandy,us&APPID=1b8d42a0a11b13b1e993848c6cfbe5f6"
+        `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=1b8d42a0a11b13b1e993848c6cfbe5f6`
       )
       .then(res => {
         this.setState({
           weatherObj: res.data
         });
-        console.log(this.state.weatherObj);
+        // console.log(this.state.weatherObj);
       });
     await this.convertToFahren();
     await this.maxTemp();
@@ -41,15 +43,17 @@ class Forecast extends Component {
   };
 
   getForecast = async () => {
+    let lat = this.props.lat
+    let lon = this.props.lon
     await axios
       .get(
-        "http://api.openweathermap.org/data/2.5/forecast?lat=40.57&lon=-111.86&APPID=1b8d42a0a11b13b1e993848c6cfbe5f6"
+        `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&APPID=1b8d42a0a11b13b1e993848c6cfbe5f6`
       )
       .then(res => {
         this.setState({
           forecast: res.data
         });
-        console.log(this.state.forecast);
+        // console.log(this.state.forecast);
       });
   };
 
@@ -72,7 +76,7 @@ class Forecast extends Component {
   maxTemp = () => {
     const celsius = this.state.weatherObj.main.temp_max - 273;
     let maxTemp = Math.floor(celsius * (9 / 5) + 32)
-    console.log(Math.floor((this.state.weatherObj.main.temp_max - 273) * (9 / 5) + 32))
+    // console.log(Math.floor((this.state.weatherObj.main.temp_max - 273) * (9 / 5) + 32))
     this.setState({
       maxTemp
     });
