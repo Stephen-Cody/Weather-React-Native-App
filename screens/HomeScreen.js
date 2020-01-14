@@ -8,67 +8,74 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ImageBackground
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
+import Forecast from './Forecast';
 
 export default function HomeScreen() {
 
   const apiKey = '1b8d42a0a11b13b1e993848c6cfbe5f6'
   const example = 'http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=1b8d42a0a11b13b1e993848c6cfbe5f6'
   return (
-    <View style={styles.container}>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
-        </View>
+    // <View style={styles.container}>
+    //   <ScrollView
+    //     style={styles.container}
+    //     contentContainerStyle={styles.contentContainer}>
+    //     <View style={styles.welcomeContainer}>
+    //       <Image
+    //         source={
+    //           __DEV__
+    //             ? require('../assets/images/robot-dev.png')
+    //             : require('../assets/images/robot-prod.png')
+    //         }
+    //         style={styles.welcomeImage}
+    //       />
+    //     </View>
+    // <View style={styles.container}>
+    <ImageBackground source={{uri: 'https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'}} style={{width: '100%', height: '100%'}}>
+      <Forecast/>
+    </ImageBackground>
+    // </View>
 
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
+//         <View style={styles.getStartedContainer}>
+//           <DevelopmentModeNotice />
 
-          <Text style={styles.getStartedText}>Get started by opening</Text>
+//           <Text style={styles.getStartedText}>Get started by opening</Text>
 
-          <View
-            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
+//           <View
+//             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
+//             <MonoText>screens/HomeScreen.js</MonoText>
+//           </View>
 
-          <Text style={styles.getStartedText}>
-            NEW Text
-          </Text>
-        </View>
+//           <Text style={styles.getStartedText}>
+//             NEW Text
+//           </Text>
+//         </View>
 
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>
-              Help, it didn’t automatically reload!
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+//         <View style={styles.helpContainer}>
+//           <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
+//             <Text style={styles.helpLinkText}>
+//               Help, it didn’t automatically reload!
+//             </Text>
+//           </TouchableOpacity>
+//         </View>
+//       </ScrollView>
 
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>
-          hello
-        </Text>
+//       <View style={styles.tabBarInfoContainer}>
+//         <Text style={styles.tabBarInfoText}>
+//           hello
+//         </Text>
 
-        <View
-          style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>
-            navigation/MainTabNavigator.js
-          </MonoText>
-        </View>
-      </View>
-    </View>
+//         <View
+//           style={[styles.codeHighlightContainer, styles.navigationFilename]}>
+//           <MonoText style={styles.codeHighlightText}>
+//             navigation/MainTabNavigator.js
+//           </MonoText>
+//         </View>
+//       </View>
+//     </View>
   );
 }
 
@@ -113,8 +120,7 @@ function handleHelpPress() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flex: 1
   },
   developmentModeText: {
     marginBottom: 20,
