@@ -1,6 +1,5 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, TextInput, View, TouchableOpacity} from "react-native";
-// import { ExpoLinksView } from '@expo/samples';
 import Cities from "../UScities.json";
 
 export default class LinksScreen extends React.Component {
@@ -21,7 +20,7 @@ export default class LinksScreen extends React.Component {
   };
 
   filterCity = () => {
-    let newArr = this.state.filteredCities
+    let newArr = []
     if (this.state.search.length > 3) {
       let filterByValue = Cities.filter(o =>
          o.name.toLowerCase().includes(this.state.search.toLowerCase())
