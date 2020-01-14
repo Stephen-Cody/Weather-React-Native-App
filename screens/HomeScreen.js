@@ -54,7 +54,7 @@ export default class HomeScreen extends React.Component {
         `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=1b8d42a0a11b13b1e993848c6cfbe5f6`
       )
       .then(res => {
-        console.log(res)
+        // console.log(res)
         this.setState({
           currentWeather: res.data.weather[0].main
         });
