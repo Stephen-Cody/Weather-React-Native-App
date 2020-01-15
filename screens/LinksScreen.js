@@ -1,6 +1,9 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, TextInput, View, TouchableOpacity} from "react-native";
 import Cities from "../UScities.json";
+import axios from 'axios';
+import Forecast2 from "./Forecast2";
+
 
 export default class LinksScreen extends React.Component {
   constructor(props) {
@@ -10,6 +13,8 @@ export default class LinksScreen extends React.Component {
       filteredCities: []
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handlePress = this.handlePress.bind(this);
+
   }
 
   handleChange = async (key, value) => {
@@ -40,11 +45,18 @@ export default class LinksScreen extends React.Component {
     }
   }
 
+  handlePress = (value) => {
+    const city = value.split(' ').join('+')
+    this.setState({
+      city: city,
+    })
+  }
+
   render() {
     const cities = this.state.filteredCities.map((el, i) => {
       return (
         <View key={i}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.handlePress(el)}>
           <Text>{el}</Text>
           </TouchableOpacity>
         </View>
@@ -52,7 +64,6 @@ export default class LinksScreen extends React.Component {
     })
     return (
       <ScrollView style={styles.container}>
-        <Text>Test</Text>
         <TextInput
           placeholder="City Name"
           type="text"
@@ -66,6 +77,13 @@ export default class LinksScreen extends React.Component {
           }}
         />
     {cities}
+    {this.state.city ? (
+      <View>
+      <Forecast2 
+        city = {this.state.city}
+      />
+      </View>
+    ) : null}
       </ScrollView>
     );
   }
@@ -79,6 +97,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: "#fff"
+    backgroundColor: "blue"
   }
 });
