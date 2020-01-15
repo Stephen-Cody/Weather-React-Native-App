@@ -28,11 +28,10 @@ class Forecast extends Component {
     let lat = this.props.lat
     let lon = this.props.lon
     if (this.props.city) {
-      console.log("hit1")
 
       await axios
         .get(
-          `https://samples.openweathermap.org/data/2.5/weather?q=${this.props.city},us&appid=b6907d289e10d714a6e88b30761fae22`
+          `https://api.openweathermap.org/data/2.5/weather?q=${this.props.city},us&appid=1b8d42a0a11b13b1e993848c6cfbe5f6`
         )
         .then(res => {
           this.setState({
@@ -67,10 +66,9 @@ class Forecast extends Component {
     let lat = this.props.lat
     let lon = this.props.lon
     if (this.props.city) {
-      console.log("hit2")
       await axios
         .get(
-          `https://samples.openweathermap.org/data/2.5/forecast?q=${this.props.city},us&appid=b6907d289e10d714a6e88b30761fae22`
+          `https://api.openweathermap.org/data/2.5/forecast?q=${this.props.city},us&appid=1b8d42a0a11b13b1e993848c6cfbe5f6`
         )
         .then(res => {
           this.setState({
