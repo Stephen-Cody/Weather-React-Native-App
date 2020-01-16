@@ -81,7 +81,8 @@ class Forecast extends Component {
   };
 
   sunrise = () => {
-    var d = new Date(+this.state.weatherObj.sys.sunrise * 1000); // The 0 there is the key, which sets the date to the epoch
+    var d = new Date(+this.state.weatherObj.sys.sunrise * 1000);
+     // The 0 there is the key, which sets the date to the epoch
     let time = d.toLocaleTimeString([], { timeStyle: "short" });
     this.setState({ sunrise: time });
   };
@@ -95,6 +96,8 @@ class Forecast extends Component {
   render() {
     const current = this.state.weatherObj;
     const {forecast} = this.state
+
+    if (this.state.forecast) {console.log(new Date(+this.state.forecast.list[0].dt * 1000))}
     return (
         
         <View
