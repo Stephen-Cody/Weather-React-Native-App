@@ -59,8 +59,19 @@ export default class LinksScreen extends React.Component {
     const cities = this.state.filteredCities.map((el, i) => {
       return (
         <View key={i}>
-          <TouchableOpacity onPress={() => this.handlePress(el)}>
-          <Text>{el}</Text>
+          <TouchableOpacity onPress={() => this.handlePress(el)} style={{borderRadius: 10}}>
+          <Text 
+            style={{
+              fontSize: 30,
+              backgroundColor: 'ghostwhite',
+              borderWidth: 1,
+              borderColor: '#d6d7da',
+              // marginRight: 5,
+              // marginLeft: 5,
+              // borderRadius: 10,
+              }}>
+              {el}
+              </Text>
           </TouchableOpacity>
         </View>
       )
@@ -85,7 +96,9 @@ export default class LinksScreen extends React.Component {
             marginTop: 20,
           }}
         />
-    {cities}
+    <View style={{marginTop: 20}}>
+      {cities}
+    </View>
     {this.state.city ? (
       <View>
       <Forecast 

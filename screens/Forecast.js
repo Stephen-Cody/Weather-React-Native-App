@@ -129,13 +129,13 @@ class Forecast extends Component {
         
         <View
         style={{
-            marginRight: 10,
-            marginLeft: 10,
-            marginTop: 20,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: '#50505090',
-            borderRadius: 15,
+          marginRight: 10,
+          marginLeft: 10,
+          marginTop: 20,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: '#50505090',
+          borderRadius: 15,
         }}
         >
         

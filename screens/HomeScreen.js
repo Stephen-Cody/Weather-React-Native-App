@@ -125,10 +125,14 @@ export default class HomeScreen extends React.Component {
         source={{uri: this.state.uri}}
         style={{ width: "100%", height: "100%" }}
       >
+        <View
+        style={{marginTop: 100}}
+        >
         <Forecast 
           lat = {this.state.lat}
           lon = {this.state.lon}
         />
+        </View>
       </ImageBackground>) : null }
       </>
       // </View>
