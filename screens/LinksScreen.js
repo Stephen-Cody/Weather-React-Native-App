@@ -1,8 +1,8 @@
 import React from "react";
-import { ScrollView, StyleSheet, Text, TextInput, View, TouchableOpacity} from "react-native";
+import { ScrollView, StyleSheet, Text, TextInput, View, TouchableOpacity, ImageBackground} from "react-native";
 import Cities from "../UScities.json";
 import axios from 'axios';
-import Forecast2 from "./Forecast2";
+import Forecast from "./Forecast";
 
 
 export default class LinksScreen extends React.Component {
@@ -19,7 +19,8 @@ export default class LinksScreen extends React.Component {
 
   handleChange = async (key, value) => {
     await this.setState({
-      [key]: value
+      [key]: value,
+      city: '',
     });
     await this.filterCity()
   };
@@ -49,6 +50,8 @@ export default class LinksScreen extends React.Component {
     const city = value.split(' ').join('+')
     this.setState({
       city: city,
+      search: "",
+      filteredCities: [],
     })
   }
 
@@ -56,35 +59,55 @@ export default class LinksScreen extends React.Component {
     const cities = this.state.filteredCities.map((el, i) => {
       return (
         <View key={i}>
-          <TouchableOpacity onPress={() => this.handlePress(el)}>
-          <Text>{el}</Text>
+          <TouchableOpacity onPress={() => this.handlePress(el)} style={{borderRadius: 10}}>
+          <Text 
+            style={{
+              fontSize: 30,
+              backgroundColor: 'ghostwhite',
+              borderWidth: 1,
+              borderColor: '#d6d7da',
+              // marginRight: 5,
+              // marginLeft: 5,
+              // borderRadius: 10,
+              }}>
+              {el}
+              </Text>
           </TouchableOpacity>
         </View>
       )
     })
     return (
-      <ScrollView style={styles.container}>
+        <ImageBackground 
+          source={{uri: 'https://images.hdqwalls.com/download/clouds-summer-weather-5k-1b-2560x1440.jpg'}} 
+          style={{width: '100%', height: '100%'}}
+          >
+      <ScrollView>
         <TextInput
           placeholder="City Name"
           type="text"
           onChangeText={e => this.handleChange("search", e)}
           value={this.state.search}
           style={{
-            width: "100%",
             height: 30,
             backgroundColor: "ghostwhite",
-            borderRadius: 10
+            borderRadius: 10,
+            marginLeft: 30,
+            marginRight: 30,
+            marginTop: 20,
           }}
         />
-    {cities}
+    <View style={{marginTop: 20}}>
+      {cities}
+    </View>
     {this.state.city ? (
       <View>
-      <Forecast2 
+      <Forecast 
         city = {this.state.city}
-      />
+        />
       </View>
     ) : null}
       </ScrollView>
+    </ImageBackground>
     );
   }
 }
@@ -97,6 +120,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: "blue"
+    backgroundColor: "gray"
   }
 });
