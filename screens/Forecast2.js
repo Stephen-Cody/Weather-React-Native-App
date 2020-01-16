@@ -28,11 +28,10 @@ class Forecast extends Component {
     let lat = this.props.lat
     let lon = this.props.lon
     if (this.props.city) {
-      console.log("hit1")
 
       await axios
         .get(
-          `https://samples.openweathermap.org/data/2.5/weather?q=${this.props.city},us&appid=b6907d289e10d714a6e88b30761fae22`
+          `https://api.openweathermap.org/data/2.5/weather?q=${this.props.city},us&appid=1b8d42a0a11b13b1e993848c6cfbe5f6`
         )
         .then(res => {
           this.setState({
@@ -67,10 +66,9 @@ class Forecast extends Component {
     let lat = this.props.lat
     let lon = this.props.lon
     if (this.props.city) {
-      console.log("hit2")
       await axios
         .get(
-          `https://samples.openweathermap.org/data/2.5/forecast?q=${this.props.city},us&appid=b6907d289e10d714a6e88b30761fae22`
+          `https://api.openweathermap.org/data/2.5/forecast?q=${this.props.city},us&appid=1b8d42a0a11b13b1e993848c6cfbe5f6`
         )
         .then(res => {
           this.setState({
@@ -115,8 +113,7 @@ class Forecast extends Component {
   };
 
   sunrise = () => {
-    var d = new Date(+this.state.weatherObj.sys.sunrise * 1000);
-     // The 0 there is the key, which sets the date to the epoch
+    var d = new Date(+this.state.weatherObj.sys.sunrise * 1000); // The 0 there is the key, which sets the date to the epoch
     let time = d.toLocaleTimeString([], { timeStyle: "short" });
     this.setState({ sunrise: time });
   };
@@ -130,8 +127,6 @@ class Forecast extends Component {
   render() {
     const current = this.state.weatherObj;
     const {forecast} = this.state
-
-    if (this.state.forecast) {console.log(new Date(+this.state.forecast.list[0].dt * 1000))}
     return (
         
         <View

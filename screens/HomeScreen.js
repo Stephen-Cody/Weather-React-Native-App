@@ -26,6 +26,7 @@ export default class HomeScreen extends React.Component {
 
   componentDidMount = async () => {
     await this.findCoordinates();
+    // console.log('hit')
   };
 
   
@@ -40,7 +41,7 @@ export default class HomeScreen extends React.Component {
         })
         await this.getCurrentWeather();
       },
-      error => Alert.alert(error.message),
+      error => alert(error.message),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   };
@@ -53,16 +54,45 @@ export default class HomeScreen extends React.Component {
         `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=1b8d42a0a11b13b1e993848c6cfbe5f6`
       )
       .then(res => {
+        // console.log(res)
         this.setState({
           currentWeather: res.data.weather[0].main
         });
+        // console.log(this.state.currentWeather);
       });
     await this.setBackground();
   };
 
   setBackground = () => {
+    // console.log(this.state.currentWeather)
     if (this.state.currentWeather === "Clouds") {
-      this.setState({ uri: "https://i.pinimg.com/originals/6b/8f/94/6b8f94ec84c93fdad4dd6070f16deabb.jpg" });
+      this.setState({ 
+        uri: "http://getwallpapers.com/wallpaper/full/4/f/4/564402.jpg" 
+      });
+    } else if (this.state.currentWeather === "Rain") {
+      this.setState({
+        uri: "http://getwallpapers.com/wallpaper/full/4/f/4/564402.jpg"
+      });
+    } else if (this.state.currentWeather === "Thunderstorm") {
+      this.setState({
+        uri: "https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      });
+    } else if (this.state.currentWeather === "Drizzle") {
+      this.setState({
+        uri: "https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      });
+    } else if (this.state.currentWeather === "Snow") {
+      this.setState({
+        uri: "https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      });
+    } else if (this.state.currentWeather === "Clouds") {
+      this.setState({
+        uri: "https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      });
+    } else if (this.state.currentWeather === "Clear") {
+      this.setState({
+        uri: "https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      });
     } else {
       this.setState({
         uri: "https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
@@ -75,6 +105,21 @@ export default class HomeScreen extends React.Component {
     const example =
       "http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=1b8d42a0a11b13b1e993848c6cfbe5f6";
     return (
+      // <View style={styles.container}>
+      //   <ScrollView
+      //     style={styles.container}
+      //     contentContainerStyle={styles.contentContainer}>
+      //     <View style={styles.welcomeContainer}>
+      //       <Image
+      //         source={
+      //           __DEV__
+      //             ? require('../assets/images/robot-dev.png')
+      //             : require('../assets/images/robot-prod.png')
+      //         }
+      //         style={styles.welcomeImage}
+      //       />
+      //     </View>
+      // <View style={styles.container}>
       <>
       {this.state.uri  ? (<ImageBackground
         source={{uri: this.state.uri}}
@@ -86,6 +131,45 @@ export default class HomeScreen extends React.Component {
         />
       </ImageBackground>) : null }
       </>
+      // </View>
+
+      //         <View style={styles.getStartedContainer}>
+      //           <DevelopmentModeNotice />
+
+      //           <Text style={styles.getStartedText}>Get started by opening</Text>
+
+      //           <View
+      //             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
+      //             <MonoText>screens/HomeScreen.js</MonoText>
+      //           </View>
+
+      //           <Text style={styles.getStartedText}>
+      //             NEW Text
+      //           </Text>
+      //         </View>
+
+      //         <View style={styles.helpContainer}>
+      //           <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
+      //             <Text style={styles.helpLinkText}>
+      //               Help, it didn’t automatically reload!
+      //             </Text>
+      //           </TouchableOpacity>
+      //         </View>
+      //       </ScrollView>
+
+      //       <View style={styles.tabBarInfoContainer}>
+      //         <Text style={styles.tabBarInfoText}>
+      //           hello
+      //         </Text>
+
+      //         <View
+      //           style={[styles.codeHighlightContainer, styles.navigationFilename]}>
+      //           <MonoText style={styles.codeHighlightText}>
+      //             navigation/MainTabNavigator.js
+      //           </MonoText>
+      //         </View>
+      //       </View>
+      //     </View>
     );
   }
 }

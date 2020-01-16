@@ -1,6 +1,9 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, TextInput, View, TouchableOpacity, ImageBackground, Image} from "react-native";
 import Cities from "../UScities.json";
+import axios from 'axios';
+import Forecast2 from "./Forecast2";
+
 
 export default class LinksScreen extends React.Component {
   constructor(props) {
@@ -10,6 +13,8 @@ export default class LinksScreen extends React.Component {
       filteredCities: []
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handlePress = this.handlePress.bind(this);
+
   }
 
   handleChange = async (key, value) => {
@@ -40,67 +45,46 @@ export default class LinksScreen extends React.Component {
     }
   }
 
+  handlePress = (value) => {
+    const city = value.split(' ').join('+')
+    this.setState({
+      city: city,
+    })
+  }
+
   render() {
     const cities = this.state.filteredCities.map((el, i) => {
       return (
-        <View 
-        key={i}
-        style={{
-          border: 1,
-          borderBottomWidth: .5,
-          borderColor: 'ghostwhite',
-        }}
-        >
-          <TouchableOpacity>
-          <Text
-          style={{
-            fontSize: 20,
-            marginLeft:10,
-            padding: 10,
-            color: 'ghostwhite'
-          }} 
-          >{el}</Text>
+        <View key={i}>
+          <TouchableOpacity onPress={() => this.handlePress(el)}>
+          <Text>{el}</Text>
           </TouchableOpacity>
         </View>
       )
     })
     return (
-      <View style={{
-        flex: 1,
-        backgroundColor: "blue"
-      }}>
-        {/* <Image 
-        source={{uri: "https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"}}
-        style={{
-          flex: 1,
-          resizeMode: 'cover',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          bottom: 0,
-          right: 0,
-          width: '100%',
-          height: '100%',
-          justifyContent: 'center'
-          
-        }}>
-        </Image> */}
-          <TextInput
-            placeholder="City Name"
-            type="text"
-            onChangeText={e => this.handleChange("search", e)}
-            value={this.state.search}
-            style={{
-              width: "100%",
-              height: 40,
-              backgroundColor: "ghostwhite",
-              borderRadius: 5
-            }}
-            />
-        <ScrollView style={styles.container}>
-      {cities}
-        </ScrollView>
+      <ScrollView style={styles.container}>
+        <TextInput
+          placeholder="City Name"
+          type="text"
+          onChangeText={e => this.handleChange("search", e)}
+          value={this.state.search}
+          style={{
+            width: "100%",
+            height: 30,
+            backgroundColor: "ghostwhite",
+            borderRadius: 10
+          }}
+        />
+    {cities}
+    {this.state.city ? (
+      <View>
+      <Forecast2 
+        city = {this.state.city}
+      />
       </View>
+    ) : null}
+      </ScrollView>
     );
   }
 }
@@ -113,6 +97,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: "#486B8D"
   }
-});
+})
